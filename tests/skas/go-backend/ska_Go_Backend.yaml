@@ -1,0 +1,4 @@
+scripts:
+  All:
+    - "echo I will create go backend for you"
+    - "echo echo"

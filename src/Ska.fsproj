@@ -1,13 +1,19 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
     <TargetFramework>net7.0</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <ProduceReferenceAssembly>false</ProduceReferenceAssembly>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="FileLookup.fs" />
+    <Compile Include="OsDetect.fs" />
+    <Compile Include="Domain.fs" />
+    <Compile Include="YamlDao.fs" />
+    <Compile Include="Views.fs" />
     <Compile Include="Program.fs" />
+    <Content Include="ref_config.yaml" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="FSharp.Configuration" Version="2.0.0" />
     <PackageReference Include="Spectre.Console" Version="0.45.0" />
   </ItemGroup>
 </Project>

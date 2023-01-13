@@ -24,10 +24,9 @@ whatToCreate.AddChoice("NodeJS Backend") |> ignore
 let toSkaPrompt = AnsiConsole.Prompt whatToCreate
 let features = MultiSelectionPrompt<string>()
 features.AddChoice("GRPC").Select() |> ignore
-features.AddChoice("GrqphQL").Select() |> ignore
+features.AddChoice("GraphQL").Select() |> ignore
 features.AddChoice("Sqlx + Goose migrations").Select() |> ignore
 features.AddChoice("HTTP API").Select() |> ignore
-features.AddChoice("Tests").Select() |> ignore
 features.AddChoice("Docker Image + Cloud Run Terraform").Select() |> ignore
 features.AddChoice("Github action").Select() |> ignore
 

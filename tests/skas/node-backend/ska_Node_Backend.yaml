@@ -1,0 +1,3 @@
+scripts:
+  All: 
+    - "echo I will create node backend for you"

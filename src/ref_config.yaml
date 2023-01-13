@@ -6,4 +6,4 @@ scripts:
   MacOS: 
     - ""
   All: 
-    - "Let's create"
+    - "echo Let's create"

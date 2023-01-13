@@ -1,0 +1,9 @@
+scripts:
+  Windows: 
+    - ""
+  Linux: 
+    - ""
+  MacOS: 
+    - ""
+  All: 
+    - "echo Let's create"

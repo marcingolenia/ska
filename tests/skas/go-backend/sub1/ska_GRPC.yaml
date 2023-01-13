@@ -1,0 +1,10 @@
+scripts:
+  Windows: 
+    - "echo windows"
+    - "echo windows"
+  Linux: 
+    - "echo linux"
+  MacOS: 
+    - "echo macos"
+  All: 
+    - "echo all"
