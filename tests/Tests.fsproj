@@ -4,6 +4,7 @@
     <GenerateProgramFile>true</GenerateProgramFile>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="scriptExecution.fs" />
     <Compile Include="YamlDao.fs" />
     <Content Include="$(SolutionDir)tests\skas\**">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
