@@ -7,6 +7,7 @@
   <ItemGroup>
     <Compile Include="OsDetect.fs" />
     <Compile Include="Domain.fs" />
+    <Compile Include="ScriptRunner.fs" />
     <Compile Include="YamlDao.fs" />
     <Compile Include="Views.fs" />
     <Compile Include="Program.fs" />
