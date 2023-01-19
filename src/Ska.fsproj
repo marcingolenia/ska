@@ -9,6 +9,7 @@
     <Compile Include="Domain.fs" />
     <Compile Include="ScriptRunner.fs" />
     <Compile Include="YamlDao.fs" />
+    <Compile Include="FileCopier.fs" />
     <Compile Include="Views.fs" />
     <Compile Include="Program.fs" />
     <Content Include="ref_config.yaml" />

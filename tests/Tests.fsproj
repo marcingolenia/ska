@@ -6,7 +6,14 @@
   <ItemGroup>
     <Compile Include="learning_scriptsExecution.fs" />
     <Compile Include="ScriptRunner.fs" />
+    <Content Include="skas\go-backend\sub1\sub.go" />
+    <Content Include="skas\go-backend\sub1\sub.json" />
+    <Content Include="skas\go-backend\sub1\subdir\subdir.go" />
+    <Content Include="skas\go-backend\sub1\subdir\subdir.json" />
+    <Content Include="skas\go-backend\root.go" />
+    <Content Include="skas\go-backend\papa.json" />
     <Compile Include="YamlDao.fs" />
+    <Compile Include="FilesCopier.fs" />
     <Content Include="$(SolutionDir)tests\skas\**">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
