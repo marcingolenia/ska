@@ -1,13 +1,11 @@
 module SourceFilesCopier
 
 open Xunit
-open FsUnit.Xunit
-
 
 [<Fact>]
 let ``All files of the ska directory and subdirectories should be copied`` () =
     // Arrange
-    let skas = YamlDao.listBy "skas"
+    let path = "skas"
     // Act
-    FilesCopier.copy skas[0]
+    FilesCopier.copy ""
     ()
