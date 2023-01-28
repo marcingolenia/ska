@@ -23,6 +23,6 @@
     <ProjectReference Include="..\src\Ska.fsproj" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="skas\go-backend\subdir\whaterver.md" />
+    <Content Include="skas\go-backend\ska_GRPC\protoc\hello.proto" />
   </ItemGroup>
 </Project>
