@@ -31,19 +31,3 @@ let ``Ska: All subdirectories that don't start with "ska_" including files shoul
         Directory.GetFiles(toPath, "*.*", SearchOption.AllDirectories)
         |> Array.map(fun filePath -> filePath.Replace($"{toPath}{Path.DirectorySeparatorChar}", ""))
     copiedFiles |> should equal [| "papa.json"; "root.go"; "subdir/whaterver.md" |]
-//
-// [<Fact>]
-// let ``Ska option: All files in the directory should be copied`` () =
-//     // Arrange
-//     let path = Path.Combine("skas", "go-backend")
-//     // Act
-//     FilesCopier.copyDir path
-//     ()
-//
-// [<Fact>]
-// let ``Ska option: All subdirectories including files should be copied`` () =
-//     // Arrange
-//     let path = Path.Combine("skas", "go-backend")
-//     // Act
-//     FilesCopier.copyDir path
-//     ()

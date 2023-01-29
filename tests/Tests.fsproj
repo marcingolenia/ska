@@ -6,6 +6,7 @@
   <ItemGroup>
     <Compile Include="learning_scriptsExecution.fs" />
     <Compile Include="ScriptRunner.fs" />
+    <Compile Include="SimpleSkaWithoutOption.fs" />
     <Compile Include="YamlDao.fs" />
     <Compile Include="FilesCopier.fs" />
     <Content Include="$(SolutionDir)tests\skas\**">

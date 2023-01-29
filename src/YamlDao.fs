@@ -42,8 +42,8 @@ let listBy path =
         let scripts = skaYaml.scripts |> listScripts
         match skaPath with
         | ExtendsPath lastPath ->
-            let newAcc = acc[0 .. (acc.Length - 2)]
-            newAcc
+            let completeSkas = acc[0 .. (acc.Length - 2)]
+            completeSkas
             @ [ { lastSka.Value with
                     Options =
                         lastSka.Value.Options
