@@ -6,15 +6,16 @@ open Xunit
 open FsUnit.Xunit
     module SkaEngine =
         let run (ska: Domain.Ska) (targetPath: string) =
-               ()
-
-[<Fact(Skip="Failing test: next todo")>]
+               FilesCopier.copyFiles ska.Path targetPath
+               ska.Scripts |> List.iter(fun script -> ScriptRunner.run targetPath script |> ignore)
+                
+[<Fact>]
 let ``Simple nodejs project with express can be scaffolded``() = 
     // Arrange 
     let ska: Domain.Ska = { Name = "NodeJS Express"
-                            Path = failwith "skas/node-backend/ska_Node_Backend.yaml"
+                            Path = Path.Combine("skas","node-backend","ska_Node_Backend.yaml")
                             Scripts = [
-                                "npm install"
+                                "npm i"
                             ]
                             Options = []
     }
@@ -24,6 +25,11 @@ let ``Simple nodejs project with express can be scaffolded``() =
     SkaEngine.run ska toPath
     // Assert
     let copiedFiles =
-        Directory.GetFiles(toPath, "*.*", SearchOption.AllDirectories)
+        Directory.GetFiles(toPath, "*.*")
         |> Array.map(fun filePath -> filePath.Replace($"{toPath}{Path.DirectorySeparatorChar}", ""))
-    copiedFiles |> should contain [| "package.json" |]
+    let node_modules =
+        Directory.GetDirectories(toPath, "node_modules")
+        |> Array.map(fun filePath -> filePath.Replace($"{toPath}{Path.DirectorySeparatorChar}", ""))
+    copiedFiles |> should contain "package.json"
+    copiedFiles |> should contain "index.ts"
+    node_modules |> should contain "node_modules"

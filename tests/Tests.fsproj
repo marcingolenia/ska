@@ -10,7 +10,7 @@
     <Compile Include="YamlDao.fs" />
     <Compile Include="FilesCopier.fs" />
     <Content Include="$(SolutionDir)tests\skas\**">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
@@ -22,8 +22,5 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\src\Ska.fsproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="skas\go-backend\ska_GRPC\protoc\hello.proto" />
   </ItemGroup>
 </Project>

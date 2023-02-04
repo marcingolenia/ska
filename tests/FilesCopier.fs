@@ -27,7 +27,7 @@ let ``Ska: All subdirectories that don't start with "ska_" including files shoul
     // Act
     FilesCopier.copyFiles fromPath toPath
     // Assert
-    let copiedFiles =
+    let copiedFiles = 
         Directory.GetFiles(toPath, "*.*", SearchOption.AllDirectories)
         |> Array.map(fun filePath -> filePath.Replace($"{toPath}{Path.DirectorySeparatorChar}", ""))
     copiedFiles |> should equal [| "papa.json"; "root.go"; "subdir/whaterver.md" |]
