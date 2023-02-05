@@ -42,9 +42,11 @@ let ``Working nodejs with tests and more deps project with express can be scaffo
     let copiedFiles =
         Directory.GetFiles(toPath, "*.*")
         |> Array.map(fun filePath -> filePath.Replace($"{toPath}{Path.DirectorySeparatorChar}", ""))
-    let node_modules =
-        Directory.GetDirectories(toPath, "node_modules")
+    let copiedFolders =
+        Directory.GetDirectories(toPath, "*.*")
         |> Array.map(fun filePath -> filePath.Replace($"{toPath}{Path.DirectorySeparatorChar}", ""))
     copiedFiles |> should contain "package.json"
-    copiedFiles |> should contain "index.ts" // not working its in the src
-    node_modules |> should contain "node_modules"
+    copiedFolders |> should contain "node_modules"
+    copiedFolders |> should contain "src"
+    copiedFolders |> should contain "tests"
+
