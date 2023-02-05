@@ -3,7 +3,7 @@ scripts:
     - "echo windows"
     - "echo windows"
   Linux: 
-    - "echo linux"
+    - "echo linuxik"
   MacOS: 
     - "echo macos"
   All: 

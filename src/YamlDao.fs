@@ -6,7 +6,6 @@ open FSharp.Configuration
 open OsDetect
 
 type Config = YamlConfig<"ref_config.yaml">
-let skaYaml = Config()
 
 let listScripts (scripts: Config.scripts_Type) =
     (match os with
@@ -38,6 +37,7 @@ let listBy path =
     ||> List.fold(fun acc skaPath ->
         let lastSka = acc |> List.tryLast
         let lastPath = lastSka |> Option.map(fun ska -> ska.Path)
+        let skaYaml = Config()
         skaYaml.Load(skaPath)
         let scripts = skaYaml.scripts |> listScripts
         match skaPath with

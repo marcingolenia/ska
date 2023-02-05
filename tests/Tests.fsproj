@@ -12,6 +12,9 @@
     <Content Include="$(SolutionDir)tests\skas\**">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="$(SolutionDir)tests\skas_apps\**">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="FSharp.Configuration" Version="2.0.0" />
