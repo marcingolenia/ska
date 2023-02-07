@@ -22,7 +22,7 @@ let ``Should parse filenames into natural name`` () =
     // Assert
     skas |> Views.mainOptionsNames |> should equal [ "Go Backend"; "Node Backend" ]
     skas[0] |> Views.optionsNames |> should equal [ "GRPC" ]
-    skas[1] |> Views.optionsNames |> should equal [ "GRPC" ]
+    skas[1] |> Views.optionsNames |> should be Empty
 
 [<Fact>]
 let ``should read scripts`` () =
@@ -31,4 +31,4 @@ let ``should read scripts`` () =
     // Assert
     skas[0].Scripts
     |> should equal [ "echo I will create go backend for you"; "echo echo" ]
-    skas[0].Options[0].Scripts |> should equal [ "echo linux"; "echo all" ]
+    skas[0].Options[0].Scripts |> should equal [ "echo linuxik"; "echo all" ]
