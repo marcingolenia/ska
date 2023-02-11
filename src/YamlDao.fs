@@ -19,7 +19,7 @@ let listScripts (scripts: Config.scripts_Type) =
 let (|ExtendsPath|_|) (potentialParentPath: string option) (path: string) =
     let extendsPath =
         potentialParentPath.IsSome
-        && path.Contains(Directory.GetParent(potentialParentPath.Value).Name)
+        && path.Contains($"{Directory.GetParent(potentialParentPath.Value).Name}{Path.DirectorySeparatorChar}")
     if extendsPath then
         Some ExtendsPath
     else

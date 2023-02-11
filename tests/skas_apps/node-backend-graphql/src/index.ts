@@ -2,7 +2,7 @@ import express from 'express'
 import { createRouter } from './recommendation/router'
 import { compose } from './recommendation/composition_root'
 //+ska_graphql
-import {schema, root } from './graphql/graphql'
+import { schema, root } from './graphql/graphql'
 import { graphqlHTTP } from 'express-graphql'
 //ska_graphql
 

@@ -30,7 +30,9 @@ features.AddChoice("HTTP API").Select() |> ignore
 features.AddChoice("Docker Image + Cloud Run Terraform").Select() |> ignore
 features.AddChoice("Github action").Select() |> ignore
 
-let featuresPrompt = AnsiConsole.Prompt features
+let selectedFeatures = AnsiConsole.Prompt features
+
+selectedFeatures |> Seq.iter(fun feat -> AnsiConsole.WriteLine(feat))
 
 
 AnsiConsole.Markup("[red]Done[/] 👍\n");

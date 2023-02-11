@@ -11,6 +11,7 @@
     <Compile Include="YamlDao.fs" />
     <Compile Include="FileCopier.fs" />
     <Compile Include="Views.fs" />
+    <Compile Include="SkaEngine.fs" />
     <Compile Include="Program.fs" />
     <Content Include="ref_config.yaml" />
   </ItemGroup>

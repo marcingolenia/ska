@@ -4,10 +4,6 @@ open System
 open System.IO
 open Xunit
 open FsUnit.Xunit
-    module SkaEngine =
-        let run (ska: Domain.Ska) (targetPath: string) =
-               FilesCopier.copyFiles ska.Path targetPath
-               ska.Scripts |> List.iter(fun script -> ScriptRunner.run targetPath script |> ignore)
                 
 [<Fact>]
 let ``Simple nodejs project with express can be scaffolded``() = 
@@ -17,7 +13,7 @@ let ``Simple nodejs project with express can be scaffolded``() =
     let toPath =
         Path.Combine(Directory.GetCurrentDirectory(), Guid.NewGuid().ToString())
     // Act
-    SkaEngine.run nodeSka toPath
+    SkaEngine.run nodeSka toPath []
     // Assert
     let copiedFiles =
         Directory.GetFiles(toPath, "*.*")
@@ -37,7 +33,7 @@ let ``Working nodejs with tests and more deps project with express can be scaffo
     let toPath =
         Path.Combine(Directory.GetCurrentDirectory(), Guid.NewGuid().ToString())
     // Act
-    SkaEngine.run nodeSka toPath
+    SkaEngine.run nodeSka toPath []
     // Assert
     let copiedFiles =
         Directory.GetFiles(toPath, "*.*")
