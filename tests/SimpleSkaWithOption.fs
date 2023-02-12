@@ -5,7 +5,7 @@ open System.IO
 open Xunit
 open FsUnit.Xunit
          
-[<Fact(Skip="In Progress")>]
+[<Fact>]
 let ``Working nodejs with tests with graphql option is possible``() = 
     // Arrange 
     let skas = YamlDao.listBy "skas_apps"
