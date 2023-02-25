@@ -3,7 +3,7 @@ module ContentTuner
 open System.IO
 open System.Text
 
-let removeNotSelectedOptionsRelatedCode (ska: Domain.Ska) (path: string) =
+let removeSkas (ska: Domain.Ska) (path: string) =
     let selectedSkaOptionIds =
         ska.Options |> List.map(fun opt -> Path.GetFileNameWithoutExtension opt.Path)
     let indexedLines = File.ReadAllLines path |> Array.indexed
@@ -23,20 +23,11 @@ let removeNotSelectedOptionsRelatedCode (ska: Domain.Ska) (path: string) =
     let newContent = StringBuilder()
     indexedLines
         |> Array.iter(fun (lineNo, line) ->
-            if linesNumbersToRemove |> Array.contains lineNo
+            if linesNumbersToRemove |> Array.contains lineNo || (line.IndexOf("//+ska_") > -1 || line.IndexOf("//-ska_") > -1)
                 then ()
                 else newContent.AppendLine line |> ignore)
     File.WriteAllText(path, newContent.ToString())
-    
-    
-let removeAnnotations (path: string) =
-    let noAnnotation (line: string) = not(line.IndexOf("//+ska_") > -1 || line.IndexOf("//-ska_") > -1)
-    File.ReadAllLines path
-    |> Array.filter noAnnotation
-    |> (fun lines -> File.WriteAllLines(path, lines))
 
 let tune (ska: Domain.Ska) (path: string) =
     Directory.GetFiles(path, "*.*", SearchOption.AllDirectories)
-    |> Array.iter(removeNotSelectedOptionsRelatedCode ska)
-    Directory.GetFiles(path, "*.*", SearchOption.AllDirectories)
-    |> Array.iter removeAnnotations
+    |> Array.iter(removeSkas ska)

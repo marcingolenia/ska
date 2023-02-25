@@ -1,7 +1,7 @@
 module FilesCopier
 
 open System.IO
-//TODO: DON'T COPY NOT SELECTED SKAS.
+
 let copyFiles (ska: Domain.Ska) toPath =
     toPath |> Directory.CreateDirectory |> ignore
     let dirPath =
