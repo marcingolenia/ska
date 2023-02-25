@@ -16,6 +16,7 @@ let ``Ska: All files of the ska directory should be copied except ska definition
     // Assert
     Directory.GetFiles toPath
     |> Array.map(fun file -> file |> Path.GetFileName)
+    |> Array.sort
     |> should equal [| "papa.json"; "root.go" |]
 
 [<Fact>]
@@ -30,4 +31,5 @@ let ``Ska: All subdirectories that don't start with "ska_" including files shoul
     let copiedFiles = 
         Directory.GetFiles(toPath, "*.*", SearchOption.AllDirectories)
         |> Array.map(fun filePath -> filePath.Replace($"{toPath}{Path.DirectorySeparatorChar}", ""))
+        |> Array.sort
     copiedFiles |> should equal [| "papa.json"; "root.go"; "subdir/whaterver.md" |]
