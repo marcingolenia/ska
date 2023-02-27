@@ -15,7 +15,7 @@ let ``Scaffolding of nodejs with tests, graphql results in copied source files, 
     let expectedPackageJsonNameLine = "\"name\": \"Test Project Name\","
     let expectedIndexPingLine = "app.get('/ping', (_, res) => res.send('pong'))"
     // Act
-    SkaEngine.run nodeSka toPath []
+    SkaEngine.run nodeSka toPath
     // Assert
     let copiedIndexFile = Directory.GetFiles(Path.Combine(toPath, "src"), "index.ts")
     let packageJsonFile = Directory.GetFiles(toPath, "package.json")
@@ -54,7 +54,7 @@ let ``Scaffolding of nodejs with tests and not selected graphql option results i
     let toPath =
         Path.Combine(Directory.GetCurrentDirectory(), Guid.NewGuid().ToString())
     // Act
-    SkaEngine.run nodeSkaWithoutGraphql toPath []
+    SkaEngine.run nodeSkaWithoutGraphql toPath
     // Assert
     let copiedIndexFile = Directory.GetFiles(Path.Combine(toPath, "src"), "index.ts")
     let indexContent = File.ReadAllText(copiedIndexFile[0])
