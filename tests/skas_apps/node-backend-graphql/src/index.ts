@@ -17,7 +17,7 @@ app.use('/graphql', graphqlHTTP({
 const port = 3002
 
 app.use(createRouter(compose()))
-app.get('/ping', (_, res) => res.send('pong'))
+app.get('/ping', (_, res) => res.send('skavar_pingResponse'))
 
 if (process.env.NODE_ENV !== 'test') {
   app.listen(port, () => console.log(`Listening at http://localhost:${port}`))

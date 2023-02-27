@@ -1,3 +1,8 @@
+variables:
+- name: projectName
+  value: Test Project Name
+- name: pingResponse
+  value: pong
 scripts:
   All: 
     - "npm i"

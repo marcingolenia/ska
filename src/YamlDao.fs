@@ -40,20 +40,18 @@ let listBy path =
         let skaYaml = Config()
         skaYaml.Load(skaPath)
         let scripts = skaYaml.scripts |> listScripts
+        let skaToAppend =
+            { Name = skaPath |> toNaturalName
+              Variables =
+                skaYaml.variables
+                |> Seq.map(fun variable -> variable.name, variable.value)
+                |> Map.ofSeq
+              Path = skaPath
+              Scripts = scripts
+              Options = [] }
         match skaPath with
         | ExtendsPath lastPath ->
             let completeSkas = acc[0 .. (acc.Length - 2)]
             completeSkas
-            @ [ { lastSka.Value with
-                    Options =
-                        lastSka.Value.Options
-                        @ [ { Name = skaPath |> toNaturalName
-                              Path = skaPath
-                              Scripts = scripts
-                              Options = [] } ] } ]
-        | _ ->
-            acc
-            @ [ { Name = skaPath |> toNaturalName
-                  Path = skaPath
-                  Scripts = scripts
-                  Options = [] } ])
+            @ [ { lastSka.Value with Options = lastSka.Value.Options @ [ skaToAppend ] } ]
+        | _ -> acc @ [ skaToAppend ])
