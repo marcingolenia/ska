@@ -13,7 +13,7 @@ let tuneSka (ska: Domain.Ska) (variables: Map<string, string>) (path: string) =
     let indexedLines = File.ReadAllLines path |> Array.indexed
     let allSkasInFile =
         indexedLines
-        |> Array.filter(fun (_, line) -> line.Contains "+ska_" or line.Contains("-ska_"))
+        |> Array.filter(fun (_, line) -> line.Contains "+ska_" || line.Contains("-ska_"))
         |> Array.map(fun (lineNo, line) -> (lineNo, line[line.IndexOf("ska_")..]))
     let linesNumbersToRemove =
         allSkasInFile

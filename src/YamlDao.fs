@@ -7,7 +7,7 @@ open OsDetect
 
 type Config = YamlConfig<"ref_config.yaml">
 
-let listScripts (scripts: Config.scripts_Type) =
+let private listScripts (scripts: Config.scripts_Type) =
     (match os with
      | Linux -> scripts.Linux
      | Windows -> scripts.Windows
@@ -16,7 +16,7 @@ let listScripts (scripts: Config.scripts_Type) =
     @ (scripts.All |> Seq.toList)
     |> List.filter(fun script -> script <> "")
 
-let (|ExtendsPath|_|) (potentialParentPath: string option) (path: string) =
+let private (|ExtendsPath|_|) (potentialParentPath: string option) (path: string) =
     let extendsPath =
         potentialParentPath.IsSome
         && path.Contains($"{Directory.GetParent(potentialParentPath.Value).Name}{Path.DirectorySeparatorChar}")

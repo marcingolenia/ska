@@ -32,7 +32,7 @@ features.AddChoice("Github action").Select() |> ignore
 
 let selectedFeatures = AnsiConsole.Prompt features
 
-selectedFeatures |> Seq.iter(fun feat -> AnsiConsole.WriteLine(feat))
+selectedFeatures |> Seq.iter(AnsiConsole.WriteLine)
 
 
 AnsiConsole.Markup("[red]Done[/] 👍\n");
