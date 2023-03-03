@@ -1,6 +1,8 @@
 open Spectre.Console
+open System
 
-let logo = """
+let logo =
+    """
 [darkred]
  _______  _        _______ 
 (  ____ \| \    /\(  ___  )
@@ -13,26 +15,45 @@ let logo = """
 [/]
 """
 
-AnsiConsole.Markup("[link=https://spectreconsole.net]GitHub Repo[/]");
+let skas = YamlDao.listBy "/home/marcin/code/ska/tests/skas_apps"
+AnsiConsole.Markup("[link=https://spectreconsole.net]GitHub Repo[/]")
 AnsiConsole.MarkupLine(logo)
-
 let whatToCreate = SelectionPrompt<string>()
 whatToCreate.Title <- "What should I Create?"
-whatToCreate.AddChoice("Go Backend") |> ignore
-whatToCreate.AddChoice("NodeJS Backend") |> ignore
 
-let toSkaPrompt = AnsiConsole.Prompt whatToCreate
+skas
+|> Views.mainOptionsNames
+|> List.iter(fun ska -> whatToCreate.AddChoice ska |> ignore)
+
+let selectedSkaName = AnsiConsole.Prompt whatToCreate
+let selectedSka = (skas |> List.find(fun ska -> ska.Name = selectedSkaName))
 let features = MultiSelectionPrompt<string>()
-features.AddChoice("GRPC").Select() |> ignore
-features.AddChoice("GraphQL").Select() |> ignore
-features.AddChoice("Sqlx + Goose migrations").Select() |> ignore
-features.AddChoice("HTTP API").Select() |> ignore
-features.AddChoice("Docker Image + Cloud Run Terraform").Select() |> ignore
-features.AddChoice("Github action").Select() |> ignore
+features.Required <- false
+
+Views.optionsNames selectedSka
+|> List.iter(fun option -> features.AddChoice(option) |> ignore)
 
 let selectedFeatures = AnsiConsole.Prompt features
 
-selectedFeatures |> Seq.iter(AnsiConsole.WriteLine)
+let ska =
+    { selectedSka with
+        Options =
+            selectedSka.Options
+            |> List.filter(fun ska -> selectedFeatures.Contains(ska.Name)) }
 
+let pathPrompt =
+    TextPrompt<string>("[grey][[Press enter for current path]][/] Please write relative target path")
 
-AnsiConsole.Markup("[red]Done[/] 👍\n");
+pathPrompt.AllowEmpty <- true
+let selectedPath = AnsiConsole.Prompt pathPrompt
+
+let targetPath =
+    match String.IsNullOrWhiteSpace selectedPath with
+    | true -> AppDomain.CurrentDomain.BaseDirectory
+    | false -> System.IO.Path.GetFullPath(AppDomain.CurrentDomain.BaseDirectory + selectedPath)
+
+AnsiConsole
+    .Status(Spinner = Spinner.Known.Material)
+    .Start("Scaffolding...", (fun ctx -> SkaEngine.run ska targetPath))
+
+AnsiConsole.Markup("[red]Done[/] 👍\n")
