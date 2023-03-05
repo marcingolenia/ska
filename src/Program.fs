@@ -1,3 +1,4 @@
+open System.IO
 open Spectre.Console
 open System
 
@@ -14,9 +15,12 @@ let logo =
 \_______)|_/    \/|/     \|                           
 [/]
 """
-
-let skas = YamlDao.listBy "/home/marcin/code/ska/tests/skas_apps"
-AnsiConsole.Markup("[link=https://spectreconsole.net]GitHub Repo[/]")
+let skasPath = Environment.GetCommandLineArgs()
+               |> Array.tryItem(1)
+               |> Option.defaultValue (Path.Combine(Directory.GetCurrentDirectory(), "skas"))
+AnsiConsole.MarkupLine($"[red]Skas[/] loaded from: {skasPath}")
+let skas = YamlDao.listBy skasPath
+AnsiConsole.Markup("[red]Link[/] to project: [link=https://spectreconsole.net]GitHub Repo[/]")
 AnsiConsole.MarkupLine(logo)
 let whatToCreate = SelectionPrompt<string>()
 whatToCreate.Title <- "What should I Create?"
