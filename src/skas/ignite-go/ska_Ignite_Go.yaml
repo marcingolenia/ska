@@ -1,0 +1,9 @@
+variables:
+- name: projectName
+  value: contracts-onboarding
+- name: dockerImageToDeploy
+  value: europe-docker.pkg.dev/ignite-analytics-202407/gke-production/contracts-onboarding
+- name: teamToLabelOnPr
+  value: ostoya
+- name: googleCloudProject
+  value: ignite-analytics-202407

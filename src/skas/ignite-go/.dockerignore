@@ -1,0 +1,5 @@
+/terraform/**
+/tests/**
+.gitignore
+docker-compose-tests.yml
+README.md

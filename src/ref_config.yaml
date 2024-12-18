@@ -1,8 +1,6 @@
 variables:
-  - name: projectName
-    value: Test Project Name
-  - name: testTag
-    value: Tag12345
+  - name: ""
+    value: ""
 scripts:
   Windows: 
     - ""
@@ -11,4 +9,4 @@ scripts:
   MacOS: 
     - ""
   All: 
-    - "echo Let's create"
+    - ""

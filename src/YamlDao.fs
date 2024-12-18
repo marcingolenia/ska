@@ -30,7 +30,7 @@ let toFileName name = $"ska_{name}.yaml".Replace(" ", "_")
 
 let listBy path =
     let sortedSkasPaths =
-        Directory.GetFiles(path, "*.yaml", SearchOption.AllDirectories)
+        Directory.GetFiles(path, "ska_*.yaml", SearchOption.AllDirectories)
         |> Array.toList
         |> List.sortBy(fun path -> Directory.GetParent(path).FullName)
     ([], sortedSkasPaths)
@@ -44,6 +44,7 @@ let listBy path =
             { Name = skaPath |> toNaturalName
               Variables =
                 skaYaml.variables
+                |> Seq.filter(fun variable -> variable.name <> "")
                 |> Seq.map(fun variable -> variable.name, variable.value)
                 |> Map.ofSeq
               Path = skaPath
